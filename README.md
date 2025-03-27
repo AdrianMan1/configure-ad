@@ -65,7 +65,8 @@ Before we begin anything within Active Directory, we first need to install it!
 
 
   - Create a Directory Services Restore Mode (DSRM) password. (Dont forget to write it down!)
-  - Continue through tabs til installation prompt is givem, Install.
+  - Leave DNS options unchecked
+  - Continue through tabs til installation prompt is given, Install.
 
 Now that the Windows Server has been promoted to DC and have created our domain, we can continue with creating a domain admin user.
 
@@ -135,11 +136,71 @@ Once you have verified the client is in the domain, you will now be able to util
 
 </p>
 <p>
-textexttext
 
-We do this by using this script:
+Now that we have our Active Directory set up, we should now create users for our employees to be assigned. There are two main ways to go about doing so. First, we can individually create users within our domain by using the following path:
 
+*  ADUC > mydomain.com > _EMPLOYEES > New > User*
 
+From here we would create the user, assign it a password then continue with other configuration. This way work fine for small organizations, but not every Domain User has time to manually create from tens to hundreds of user profiles. Thats where the second method comes into play, which is automatically creating users. We can do that by using a script!
+
+This script that will create 10 (or however many needed) users under the "_EMPLOYEES" tab within the domain:
+
+      # ----- Edit these Variables for your own Use Case ----- #
+    $PASSWORD_FOR_USERS   = "Password1"
+    $NUMBER_OF_ACCOUNTS_TO_CREATE = 10
+    # ------------------------------------------------------ #
+
+    Function generate-random-name() {
+    $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
+    $vowels = @('a','e','i','o','u','y')
+    $nameLength = Get-Random -Minimum 3 -Maximum 7
+    $count = 0
+    $name = ""
+
+    while ($count -lt $nameLength) {
+        if ($($count % 2) -eq 0) {
+            $name += $consonants[$(Get-Random -Minimum 0 -Maximum $($consonants.Count - 1))]
+        }
+        else {
+            $name += $vowels[$(Get-Random -Minimum 0 -Maximum $($vowels.Count - 1))]
+        }
+        $count++
+    }
+
+    return $name
+
+    }
+
+    $count = 1
+    while ($count -lt $NUMBER_OF_ACCOUNTS_TO_CREATE) {
+    $fisrtName = generate-random-name
+    $lastName = generate-random-name
+    $username = $fisrtName + '.' + $lastName
+    $password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+
+    Write-Host "Creating user: $($username)" -BackgroundColor Black -ForegroundColor Cyan
+    
+    New-AdUser -AccountPassword $password `
+               -GivenName $firstName `
+               -Surname $lastName `
+               -DisplayName $username `
+               -Name $username `
+               -EmployeeID $username `
+               -PasswordNeverExpires $true `
+               -Path "ou=_EMPLOYEES,$(([ADSI]`"").distinguishedName)" `
+               -Enabled $true
+    $count++
+    }
+
+This script can be pasted into a text file, then ran through Powershell ISE. If youre curious on how to do so, the path is simple:
+
+- Open Powershell ISE as an administrator
+- Click the arrow on the top right with the word "script" next to it.
+- Paste the script into the area with the white background
+- Press the "Run Script"/green arrow on the top of the screen
+- Witness how 10 users are created with the same cridentials, waitint to be configured to your liking.
+
+Now that your users are created, you may configure them with their groups and permissions, then assign them to staff as needed. 
 
 </p>
 <br />
