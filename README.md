@@ -225,11 +225,25 @@ Now that your users are created, you may configure them with their groups and pe
 
 Now that we have our group policy configured, there will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
 
-Use this path to unlock an account:
+
+**Use this path to unlock an account:**
+
+ADUC > EMPLOYEES > **User** > Properties > Account > Check "Unlock Account" > Apply
+
+<img src="https://github.com/user-attachments/assets/bdb935ce-be0a-4387-ad37-7d236f741c21" width="500" height="350"/>
+
+Whenever an account is configured to lockout after a certain amount of failed attempts you will need to unlock the user's account if it hasnt already been unlocked through the account lockout duration GP. 
+
+**use the following to reset a password:**
+
+ADUC > EMPLOYEES > Right click **User** > Reset Password 
+
+From here you can also unlock the account on the same where you create the user's new password. 
+
+<img src="https://github.com/user-attachments/assets/82e89bf6-67a8-47b4-a49d-f0b188c86f24" width="500" height="250"/>
 
 
 
-and use the following to reset a password:
 
 <ins>Enabling/Disabling Accounts<ins/> 
 
