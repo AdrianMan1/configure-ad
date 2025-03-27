@@ -27,9 +27,10 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Ancillary Information</h2>
 
+- Group Policy
 - Dealing with account lockouts/resetting passwords
 - Enabling/Disabling Accounts 
-- Group Policy
+
 
 <h2>Deployment and Configuration Steps</h2>
 
@@ -141,9 +142,13 @@ Now that we have our Active Directory set up, we should now create users for our
 
 *  ADUC > mydomain.com > _EMPLOYEES > New > User*
 
+<img src="https://github.com/user-attachments/assets/16a9ef9a-6769-480e-b2bc-b425d026945b" width="300" height="250"/> <img src="https://github.com/user-attachments/assets/dc05fb3b-813c-4807-9e26-69d9c02c44ee" width="300" height="250"/> 
+
+
+
 From here we would create the user, assign it a password then continue with other configuration. This way work fine for small organizations, but not every Domain User has time to manually create from tens to hundreds of user profiles. Thats where the second method comes into play, which is automatically creating users. We can do that by using a script!
 
-This script that will create 10 (or however many needed) users under the "_EMPLOYEES" tab within the domain:
+This script will create 10 (or however many needed) users under the "_EMPLOYEES" tab within the domain:
 
       # ----- Edit these Variables for your own Use Case ----- #
     $PASSWORD_FOR_USERS   = "Password1"
@@ -198,9 +203,15 @@ This script can be pasted into a text file, then ran through Powershell ISE. If 
 - Click the arrow on the top right with the word "script" next to it.
 - Paste the script into the area with the white background
 - Press the "Run Script"/green arrow on the top of the screen
-- Witness how 10 users are created with the same cridentials, waitint to be configured to your liking.
+- Witness how 10 users are created with the same cridentials, waiting to be configured to your liking.
+
+<img src="https://github.com/user-attachments/assets/9a56451c-39e1-478b-a159-ffca44f7b20e" width="750" height="500"/>
+
+
 
 Now that your users are created, you may configure them with their groups and permissions, then assign them to staff as needed. 
+
+**‼️Remember to check that the user needs to change their password when they login for the first time...its necessary to be able to keep our system secure :)‼️**
 
 </p>
 <br />
@@ -212,4 +223,18 @@ Now that your users are created, you may configure them with their groups and pe
 
 <ins>Dealing with Account Lockout/Resetting Passwords<ins/>
 
+Now that we have our group policy configured, there will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
+
+Use this path to unlock an account:
+
+
+
+and use the following to reset a password:
+
 <ins>Enabling/Disabling Accounts<ins/> 
+
+Enabling & disabling an account is just as simple as the previous process. If someone were to ask you to enable their account, it is always a good idea to check in with your system administrator first before enabling someone's account. It might have been disabled for a specific reason and its always good to be a bit paranoid when it comes to security for our network!
+
+To enable or disable an account follow the path below:
+
+
