@@ -221,6 +221,22 @@ Now that your users are created, you may configure them with their groups and pe
 
 <ins>Group Policy<ins/>
 
+Group Policy (GP) is a neccesary part of Active Directory. It allows system admins to configure user and domain properties on a wide scale. Since GP has hundreds, if not thousands of policies to configure, this will just be a mini lesson on how to use it. 
+
+Here we will be configuring our accont lockout threshhold properties, which in lamens terms is just a policy that determines how many attempts a user gets to log into their account before being locked out, for how long theyre locked out for and even how long it takes for the failed attempts counter to reset. While this is only a dot in the vast amount of things we can do with GP, all other group policies follow the same format of looking for them and configuring them.
+
+Configuring any group policy follows the same steps:
+- Open the Group Policy Management Console (GPMC)
+- Create a Group Policy Object (GPO)
+- Locate the Policy
+- Configure the Policy
+- Link the GPO to an OU
+- Update the group policy
+
+
+
+
+
 <ins>Dealing with Account Lockout/Resetting Passwords<ins/>
 
 Now that we have our group policy configured, there will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
@@ -247,8 +263,12 @@ From here you can also unlock the account on the same where you create the user'
 
 <ins>Enabling/Disabling Accounts<ins/> 
 
-Enabling & disabling an account is just as simple as the previous process. If someone were to ask you to enable their account, it is always a good idea to check in with your system administrator first before enabling someone's account. It might have been disabled for a specific reason and its always good to be a bit paranoid when it comes to security for our network!
+Enabling & disabling an account is just as simple as the previous process. It is always a good idea to check in with your system administrator first before enabling someone's account if they ask you to. It might have been disabled for a specific reason and its always good to be a bit paranoid when it comes to security for our network!
 
 To enable or disable an account follow the path below:
 
+ADUC > EMPLOYEESD > *Select Employee* > Properties > Account > Unlock Account > Apply
 
+<img src="https://github.com/user-attachments/assets/64f6032b-f793-4243-a28e-4ce92852c0a3" width="600" height="400"/>
+
+Its a very simple process, but a necessary one considering how many people might accidently get logged out of their account when they inevitably forget their password!
