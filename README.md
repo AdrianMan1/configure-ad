@@ -219,7 +219,7 @@ Now that your users are created, you may configure them with their groups and pe
 
 <ins>Dealing with Account Lockout/Resetting Passwords<ins/>
 
-Now that we have our group policy configured, there will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
+There will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
 
 
 **Use this path to unlock an account:**
