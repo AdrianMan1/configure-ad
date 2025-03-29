@@ -27,10 +27,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Ancillary Information</h2>
 
-- Group Policy
 - Dealing with account lockouts/resetting passwords
 - Enabling/Disabling Accounts 
-
 
 <h2>Deployment and Configuration Steps</h2>
 
@@ -219,24 +217,6 @@ Now that your users are created, you may configure them with their groups and pe
 
 <h2>Useful Knowledge</h2>
 
-<ins>Group Policy<ins/>
-
-Group Policy (GP) is a neccesary part of Active Directory. It allows system admins to configure user and domain properties on a wide scale. Since GP has hundreds, if not thousands of policies to configure, this will just be a mini lesson on how to use it. 
-
-Here we will be configuring our accont lockout threshhold properties, which in lamens terms is just a policy that determines how many attempts a user gets to log into their account before being locked out, for how long theyre locked out for and even how long it takes for the failed attempts counter to reset. While this is only a dot in the vast amount of things we can do with GP, all other group policies follow the same format of looking for them and configuring them.
-
-Configuring any group policy follows the same steps:
-- Open the Group Policy Management Console (GPMC)
-- Create a Group Policy Object (GPO)
-- Locate the Policy
-- Configure the Policy
-- Link the GPO to an OU
-- Update the group policy
-
-
-
-
-
 <ins>Dealing with Account Lockout/Resetting Passwords<ins/>
 
 Now that we have our group policy configured, there will be times when there is someone in our domain who needs to reset their password, or gets locked out of their account. This is an extremely common issue that end users have everywhere, so we as IT professionals will most likely come across this issue more than once so its good to know how to fix it. Both of these can be done directly within the ADUC interface. 
@@ -250,7 +230,7 @@ ADUC > EMPLOYEES > **User** > Properties > Account > Check "Unlock Account" > Ap
 
 Whenever an account is configured to lockout after a certain amount of failed attempts you will need to unlock the user's account if it hasnt already been unlocked through the account lockout duration GP. 
 
-**use the following to reset a password:**
+**Use the following to reset a password:**
 
 ADUC > EMPLOYEES > Right click **User** > Reset Password 
 
